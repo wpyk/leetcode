@@ -10,5 +10,5 @@
 ***这是斜体加粗的文字***
 ~~这是加删除线的文字~~
 
+![avatar](https://s2.ax1x.com/2019/07/21/e997VJ.jpg)
 
-![图片alt](https://s2.ax1x.com/2019/07/21/e997VJ.jpg ''图片title'')
