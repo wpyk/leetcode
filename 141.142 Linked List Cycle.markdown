@@ -20,7 +20,34 @@
      遍历这个链表，将遍历到的所有点都指向head.若其不存在环，则一定存在某个节点node1满足:node1.next == null.若存在环，则一定存在某个节点node2满足node2.next == head.       
      (2) Fast and slow method. Introduce two pointer, fast and slow. fast can move to the second node after it every round while slow can only move to its next node. If there is a cycle, these two pointers must meet at some time. If not, there's no cycle.     
      快慢指针方法。快指针一次后移两位，慢指针一次后移一位。如果存在环，则二者在某一时间一定会相遇。否则不存在环。    
-### (II) Fast and slow method./快慢指针方法/解決策    
+#### (II) Fast and slow method./快慢指针方法/解決策    
 
 
-### Code/代码/コード
+### Code/代码/コード    
+I-(1)  
+```java
+public class Solution {
+    public boolean hasCycle(ListNode head) {
+        if (head == null||head.next == null){
+            return false;
+        }
+        
+        ListNode current = head;
+        ListNode next = current;
+        
+        while(current.next != null){
+            if(current.next != head){
+                next = current.next;
+                current.next = head;// 将遍历到的节点都指向head
+                current = next;
+            }else{
+                return true;
+            }
+        }
+        
+        return false;
+    }
+}
+```    
+I-(2)  
+
