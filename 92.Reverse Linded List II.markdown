@@ -1,0 +1,36 @@
+# 92.Reverse Linded List II
+## Description  
+Reverse a linked list from position m to n. Do it in one-pass.
+Note: 1 ≤ m ≤ n ≤ length of list.
+## Example  
+Input: 1->2->3->4->5->NULL, m = 2, n = 4
+Output: 1->4->3->2->5->NULL
+### Note/思路/考え方    
+找到开始的那个节点m和结束的节点n，从m开始，把每一个节点都放到n后面。一直循环n-m次。
+```java
+class Solution {
+    public ListNode reverseBetween(ListNode head, int m, int n) {
+        ListNode pre = new ListNode(0); //这个指针是放在第m个节点之前的
+        ListNode current = head;//这个指针会移动到第m个节点
+        pre.next = head;
+        ListNode end = head;  //这个指针会移动到第n个节点
+        ListNode result = pre;// 为输出结果做准备
+        
+        for(int i = 1; i < m ; i++){//找到current，即开始要移动的节点；其前一位的节点pre  
+            current = current.next;
+            pre = pre.next;
+        }
+        for(int j = 1; j< n ; j++){ //找到需要颠倒顺序的最后一位节点
+            end = end.next;
+        }
+        for(int k = 0; k < n-m; k++){
+            pre.next =  current.next; 
+            current.next = end.next;
+            end.next = current;
+            current = pre.next;
+        }
+        
+        return result.next;
+    }
+}
+```
