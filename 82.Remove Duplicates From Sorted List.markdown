@@ -2,8 +2,8 @@
 ## Description    
    Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list.  
    输入为一个单向链表，要求删除其中所有出现超过一次的数字，将其余数字用单向列表的方式输出。
-## Example   
-  Input: 1->2->3->3->4->4->5     
+## Example  
+  Input: 1->2->3->3->4->4->5  
   Output: 1->2->5
 
 ### Note/思路/考え方    
