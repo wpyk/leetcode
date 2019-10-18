@@ -1,0 +1,111 @@
+# 73.Set Matrix Zeroes    
+## Description  
+Given a m x n matrix, if an element is 0, set its entire row and column to 0.  
+Note: Do it in-place.
+## Example  
+Input: 
+[
+  [1,1,1],
+  [1,0,1],
+  [1,1,1]
+]
+Output: 
+[
+  [1,0,1],
+  [0,0,0],
+  [1,0,1]
+]
+### Note/思路/考え方    
+最初的思路非常简单，就是遍历一下数组，找到对应的下标，然后存储起来。第二次遍历数组的时候，将下标被存储过的所有的位置的点都改为0。但是这么做存在的问题是，用来存储下标的空间跟随数组的尺寸变化而变化，与题目要求的in-place不符。    
+接下来考虑另一种思路，先给两个标记变量，用来记录第一行和第一列是否存在0元素。接下来遍历除了第一行和第一列的其他元素，如果存在0，则将其所在的位置对应在第一行（列）位置的元素归零（即列数相同，行数为0的那个元素）。第三次遍历的对象与第二次相同，但是要检测其所在的位置对应的第一行/列的元素是否为0，若为0，说明自己所在的这一行/列存在其他0元素，因此要归0； 第四次根据最初的两个标记变量，将第一行及第一列相应的进行变换。  
+
+### Code/代码/コード     
+
+思路一
+```java
+class Solution {
+    public void setZeroes(int[][] matrix) {
+        Boolean colFlag = false;
+        Boolean rowFlag = false;
+        
+        int m = matrix.length;
+        int n = matrix[0].length;
+        
+        for(int i = 0; i < n ; i++){
+            if(matrix[0][i] == 0){
+                rowFlag = true;
+                break;
+            }
+        }
+        
+        for(int i = 0; i < m ; i++){
+            if(matrix[i][0]==0){
+                colFlag = true;
+                break;
+            }
+        }
+        
+        
+        for(int i = 1; i < m; i++){
+            for(int j = 1; j < n; j++){
+                if(matrix[i][j]==0){
+                    matrix[i][0] = 0;
+                    matrix[0][j] = 0;
+                }
+            }
+        }
+        
+        for(int i = 1; i < m; i++){
+            for(int j = 1; j < n; j++){
+                if(matrix[i][0]==0 || matrix[0][j] == 0){
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+        
+        if(rowFlag == true){
+            for(int i = 0; i < n; i++){
+                matrix[0][i] = 0;
+            }
+        }
+        
+        if(colFlag == true){
+            for(int i = 0; i < m; i++){
+                matrix[i][0] = 0;
+            }
+        }
+        
+    }
+}
+```    
+思路二
+```java
+class Solution {
+    public void setZeroes(int[][] matrix) {
+        
+        List xPosition = new ArrayList<>();
+        List yPosition = new ArrayList<>();
+        
+        //先遍历一下找到含有0的元素，记下其坐标
+        
+        for(int i = 0; i < matrix.length; i++){
+            for(int j = 0; j < matrix[0].length; j++){
+               if(matrix[i][j] == 0){
+                   xPosition.add(i);
+                   yPosition.add(j);
+               } 
+            }
+        }
+        
+        //第二次遍历，将横纵坐标包含在list里的位置的值改为0
+        for(int i = 0; i < matrix.length; i++){
+            for(int j = 0; j< matrix[0].length; j++){
+                if(xPosition.contains(i) || yPosition.contains(j)){
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+        
+    }
+}
+```
