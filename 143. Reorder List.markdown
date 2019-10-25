@@ -81,14 +81,14 @@ class Solution {
         if(head == null || head.next == null || head.next.next == null){
             return;
         }
-        
+        //将链表push进stack
         ListNode current = head;
         Stack<ListNode> st = new Stack<ListNode>();
         while(current != null){
             st.push(current);
             current = current.next;
         }
-        
+        //计算后续的循环要执行几次，也就是链表长度的一半
         int i = (st.size()-1)/2;
         current = head;
         while(i > 0){
@@ -99,7 +99,7 @@ class Solution {
             current = next;
             i--;
         }
-        
+        //将最后留在链表内部的元素与以取出来的断开，避免出现环
         st.peek().next = null;
         
     }
