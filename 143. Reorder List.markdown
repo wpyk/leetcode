@@ -1,0 +1,107 @@
+# 143.Reorder List       
+## Description  
+Given a singly linked list L: L0→L1→…→Ln-1→Ln,
+reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→…   
+
+You may not modify the values in the list's nodes, only nodes itself may be changed.  
+## Example  
+Given 1->2->3->4, reorder it to 1->4->2->3.  
+Given 1->2->3->4->5, reorder it to 1->5->2->4->3.
+### Note/思路/考え方    
+本题的思路有两种。
+思路一：
+1.使用Fast and slow指针找到链表的中间位置，并在此断开；  
+2.将后半部分的链表倒序；  
+3.合并两个链表
+
+思路二：
+1.将链表存储进stack；
+2.获得stack的size，并找到中点；
+3.利用链表后进先出的特性，实现倒序；
+4.将链表从head开始，每次pop一个stack，组成新的链表。循环次数由中点决定；  
+两种方法对比后发现，思路一的runtime和memory表现都非常优异，思路二因为使用了stack，造成了内存和计算速度的降低。但是避免了private函数实现链表倒序，代码比较简洁。  
+
+### Code/代码/コード  思路一
+```java
+class Solution {
+    public void reorderList(ListNode head) {
+        if(head == null || head.next == null|| head.next.next == null){
+            return;
+        }
+        
+        //找到中间位置
+        ListNode start = head;
+        ListNode middle = start;
+        ListNode fast = start;
+        while(fast != null && fast.next != null){
+            middle = middle.next;
+            fast = fast.next.next;
+        }
+        //从中间位置断开
+        fast = middle.next;
+        middle.next = null;
+        //将后半段翻转
+        ListNode head2 = reverse(fast);  
+        
+        //开始将两段代码进行拼接
+        while(start!= null && head2!= null){
+            
+            ListNode next1 = start.next;
+            ListNode next2 = head2.next;
+            
+            start.next = head2;
+            head2.next = next1;
+            head2 = next2;
+            start = next1;
+        }
+    
+    }
+    
+    private ListNode reverse(ListNode head){
+        ListNode end = null;
+        ListNode next = null;
+        
+        while(head != null){
+            next = head.next;
+            head.next = end;
+            end = head;
+            head = next;
+        }
+        
+        return end;
+    }
+}
+```   
+
+```
+###  思路二：  
+```java
+class Solution {
+    public void reorderList(ListNode head) {
+        
+        if(head == null || head.next == null || head.next.next == null){
+            return;
+        }
+        
+        ListNode current = head;
+        Stack<ListNode> st = new Stack<ListNode>();
+        while(current != null){
+            st.push(current);
+            current = current.next;
+        }
+        
+        int i = (st.size()-1)/2;
+        current = head;
+        while(i > 0){
+            ListNode next = current.next;
+            ListNode node = st.pop();
+            current.next = node;
+            node.next = next;
+            current = next;
+            i--;
+        }
+        
+        st.peek().next = null;
+        
+    }
+}
