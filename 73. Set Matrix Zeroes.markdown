@@ -21,7 +21,7 @@ Output:
 
 ### Code/代码/コード     
 
-###思路一
+### 思路一
 ```java
 class Solution {
     public void setZeroes(int[][] matrix) {
@@ -78,7 +78,7 @@ class Solution {
     }
 }
 ```
-###思路二  
+### 思路二  
 ```java
 class Solution {
     public void setZeroes(int[][] matrix) {
