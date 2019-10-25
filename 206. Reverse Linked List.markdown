@@ -1,0 +1,35 @@
+# 206. Reverse Linked List     
+## Description    
+Reverse a singly linked list.  
+## Example  
+Input: 1->2->3->4->5->NULL
+Output: 5->4->3->2->1->NULL  
+### Note/思路/考え方    
+思路非常简单，从头开始遍历链表，第一个元素指向空，第二个元素指向第一个元素。这道题需要注意的地方是边界条件，以及设置的指针之间挪动位置时的先后顺序和指示位置。
+
+### Code/代码/コード    
+
+```java
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode pre = null;
+        ListNode temp = null;
+        
+        if(head == null || head.next == null){
+           return head; 
+        }
+        
+        while(head != null){
+            temp = head.next;
+            head.next = pre;
+            pre = head;
+            head = temp;
+        }
+        
+        return pre;
+
+        
+        
+    }
+}
+```

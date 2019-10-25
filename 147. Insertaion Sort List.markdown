@@ -1,0 +1,71 @@
+# 147. Insertion Sort List      
+## Description    
+The partial sorted list (black) initially contains only the first element in the list.With each iteration one element (red) is removed from the input data and inserted in-place into the sorted list.
+## Example  
+Example 1:
+
+Input: 4->2->1->3
+Output: 1->2->3->4
+Example 2:
+
+Input: -1->5->3->4->0
+Output: -1->0->3->4->5   
+### Note/思路/考え方    
+由于这道题是要求从小到大排序，从前向后遍历的时候，先找到第一个数字该在的位置，如：43215->32145,把每一个数字都放在比他大的数字的前面。    
+相同的思路可以用来写倒序排列。
+
+### Code/代码/コード    
+### 正序
+```java
+class Solution {
+    public ListNode insertionSortList(ListNode head) {
+        if(head == null||head.next == null)  
+             return head; 
+        ListNode sortedListHead = new ListNode(0);
+        ListNode cur = head;
+        
+        while(cur != null){
+            ListNode next = cur.next;
+            ListNode pre = sortedListHead;
+
+            //精华行，正序倒序只取决于">" 还是"<"
+            while(pre.next != null && pre.next.val < cur.val){
+                pre = pre.next;
+            }
+            
+            cur.next = pre.next;
+            pre.next = cur;
+            cur = next;
+        }
+        
+        return sortedListHead.next;
+    }
+}
+```
+### 倒序  
+```java
+class Solution {
+    public ListNode insertionSortList(ListNode head) {
+        if(head == null||head.next == null)  
+             return head; 
+        ListNode sortedListHead = new ListNode(0);
+        ListNode cur = head;
+        
+        while(cur != null){
+            ListNode next = cur.next;
+            ListNode pre = sortedListHead;
+            
+            //精华行，正序倒序只取决于">" 还是"<"
+            while(pre.next != null && pre.next.val > cur.val){
+                pre = pre.next;
+            }
+            
+            cur.next = pre.next;
+            pre.next = cur;
+            cur = next;
+        }
+        
+        return sortedListHead.next;
+    }
+}
+```
