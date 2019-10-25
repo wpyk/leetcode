@@ -21,7 +21,7 @@ Given 1->2->3->4->5, reorder it to 1->5->2->4->3.
 4.将链表从head开始，每次pop一个stack，组成新的链表。循环次数由中点决定；  
 两种方法对比后发现，思路一的runtime和memory表现都非常优异，思路二因为使用了stack，造成了内存和计算速度的降低。但是避免了private函数实现链表倒序，代码比较简洁。  
 
-### Code/代码/コード  思路一
+### Code/代码/コード  思路一  
 ```java
 class Solution {
     public void reorderList(ListNode head) {
@@ -71,12 +71,8 @@ class Solution {
         return end;
     }
 }
-```   
-
 ```
-
-###  思路二： 
-   
+### 思路二    
 ```java
 class Solution {
     public void reorderList(ListNode head) {
