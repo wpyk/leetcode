@@ -8,7 +8,7 @@ You may not modify the values in the list's nodes, only nodes itself may be chan
 Given 1->2->3->4, reorder it to 1->4->2->3.  
 Given 1->2->3->4->5, reorder it to 1->5->2->4->3.
 ### Note/思路/考え方    
-本题的思路有两种。
+本题的思路有两种。   
 思路一：
 1.使用Fast and slow指针找到链表的中间位置，并在此断开；  
 2.将后半部分的链表倒序；  
@@ -74,7 +74,9 @@ class Solution {
 ```   
 
 ```
-###  思路二：  
+
+###  思路二： 
+   
 ```java
 class Solution {
     public void reorderList(ListNode head) {
