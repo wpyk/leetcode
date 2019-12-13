@@ -1,6 +1,6 @@
 # 13. Roman to Integer
 
-##Description
+## Description
 
 Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
 
@@ -21,7 +21,7 @@ X can be placed before L (50) and C (100) to make 40 and 90.
 C can be placed before D (500) and M (1000) to make 400 and 900.
 Given a roman numeral, convert it to an integer. Input is guaranteed to be within the range from 1 to 3999.
 
-###Example
+### Example
 Input: "III"  
 Output: 3
 
@@ -41,10 +41,10 @@ Output: 1994
 Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 
 
-###tag 
+### tag 
 类似进制
 
-###Note/思路/考え方
+### Note/思路/考え方
 
 I - 1
 
@@ -71,7 +71,7 @@ M - 1000
 第二，当前的数字小于其后面的数字时，比如IX,IV,则其代表的值其实是X-I，V-I。
 第三，若当前数字是最后一位，则加上当前数字。
 参见代码如下：
-
+```java
     class Solution {
 	    public int romanToInt(String s) {
 	        HashMap<Character, Integer> hm = new HashMap<>();
@@ -96,3 +96,4 @@ M - 1000
 	        return result;
 	    }
     }
+```
