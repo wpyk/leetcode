@@ -1,6 +1,6 @@
 # 167. Two Sum II - Input array is sorted
 
-##Description
+## Description
 
 Given an array of integers that is already sorted in ascending order, find two numbers such that they add up to a specific target number.
 
@@ -15,13 +15,14 @@ target = 9
 Output: [1,2]   
 Explanation: The sum of 2 and 7 is 9. Therefore index1 = 1, index2 = 2.
 
-###tag 
+### tag 
 sum
 
-###Note/思路/考え方
+### Note/思路/考え方
 这道题的思路非常直接，创建两个指针分别指向数组的起始和终止位置，计算两个指针所在位置的和。如果大于给的target，则让右侧指针左移，反之则让左侧指针右移。结束条件是左指针与右指针重合，若此时还没有满足题目要求，则返回null。 
 
 代码如下：
+```java
     class Solution {
 	    public int[] twoSum(int[] numbers, int target) {
 	        int i = 0;
@@ -46,3 +47,4 @@ sum
 	        return null;
 	    }
     } 
+```

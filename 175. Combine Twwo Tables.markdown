@@ -1,6 +1,6 @@
 # 175. Combine Two Tables
 
-##Description
+## Description
 
 Write a SQL query for a report that provides the following information for each person in the Person table, regardless if there is an address for each of those people:
 
@@ -28,10 +28,10 @@ Table: Address
 +-------------+---------+  
 AddressId is the primary key column for this table.
 
-###tag 
+### tag 
 SQL
 
-###Code
+### Code
     select  Person.FirstName, Person.LastName, Address.City, Address.State 
     from Person left join Address 
     on Person.PersonId = Address.PersonId

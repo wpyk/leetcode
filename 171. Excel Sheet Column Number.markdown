@@ -1,6 +1,6 @@
 # 171. Excel Sheet Column Number
 
-##Description
+## Description
 
 Given a column title as appear in an Excel sheet, return its corresponding column number.
 
@@ -14,7 +14,7 @@ For example:
     AA -> 27
     AB -> 28 
     ...
-###Example
+### Example
 Input: "A"  
 Output: 1
 
@@ -23,12 +23,12 @@ Output: 28
 
 Input: "ZY"  
 Output: 701
-###tag 
+### tag 
 进制转化
 
-###Note/思路/考え方
+### Note/思路/考え方
 这道题本质上是二十六进制向十进制的转换。从左边开始每次取出一位，计算该位所代表的值，加上之前的result*26。就像324 = （3*10 +2）*10+4一样的。
-
+```java
     class Solution {
 	    public int titleToNumber(String s) {
 	        int result = 0;
@@ -40,3 +40,4 @@ Output: 701
 	        return result;
 	    }
     }
+```
