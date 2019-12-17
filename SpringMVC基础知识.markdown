@@ -4,7 +4,8 @@
 ![](https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTuynSCP1QbZghxyjfRSX0kFszLhwmjwU6_elMFvq8Gn79HEhtK)
 
 Springmvc是Spring的一个模块，Springmvc和spring是无需通过中间整合层进行整合的。  
-Springmvc是基于mvc的web框架。
+Springmvc是基于mvc的web框架。  
+servlet接到用户的请求，并返回响应。最初最早的框架中，搜索结果是静态的，即在servlet中寻找用户的请求并通过建立与用户间的io链接将这个结果返回。由于网页的请求和响应都是html的格式的，servlet需要自己去拼接字段，行程一个完整的html网页。这样的模式非常的不方便。后续进化出了jsp，其本身是一个servlet，实现html的拼接这样的一个过程，但是依然不优雅简洁。继续进化出现了ssh（Struts， spring 和 Hibernate），其存在的问题是Hibernate操作非常不便捷，後被ssm替代。
 
 ## mvc在b/s系统下的应用
 mvc是一个设计模式，mvc在b/s系统下的应用
