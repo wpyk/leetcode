@@ -1,0 +1,53 @@
+# 9. Palindrome Number
+## Description  
+Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.
+ 
+## Example
+Example 1:  
+Input: 121  
+Output: true    
+
+Example 2:
+Input: -121    
+Output: false  
+## Explanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.  
+
+Example 3:  
+Input: 10  
+Output: false  
+## Explanation: Reads 01 from right to left. Therefore it is not a palindrome.
+
+### Note/思路/考え方 
+1、 首先判断传入数字的正负，负数直接输出false；
+2、 将输入的数字转化为string，创造两个指针i，j分别指在string的首尾两个字符位置。使用while循环遍历string。若两个指针位置的字符相等，则都向中间移一位。
+3、 重复执行步骤2，直到退出while循环。
+4、 退出while循环时可能存在的情况是：（1）i>=j，此时整个string已经全部遍历完成，根据步骤2的内容可知，此时能够判断给定的数字满足题目的要求，是回文数。或者（2） 在某一次执行判断时发现i，j两个位置的char不相等，此时可以得出结论，给定的数字不是回文数。 
+代码如下：
+
+```java
+
+class Solution {
+    public boolean isPalindrome(int x) {
+        if(x < 0 ){
+            return false;
+        }
+        String string = Integer.toString(x);
+        int i = 0;
+        int j = string.length()-1;
+        while(i < j && string.charAt(i) == string.charAt(j)){
+            i++;
+            j--;
+        }
+        //注意这里有一个判断条件是i >= j，而非 i == j
+        if(i>=j){
+            return true;
+        }else{
+            return false;
+        }
+    }
+}
+```
+
+
+
+

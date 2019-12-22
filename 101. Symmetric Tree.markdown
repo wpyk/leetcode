@@ -1,0 +1,69 @@
+# 101. Symmetric Tree
+## Description
+
+Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).
+
+### Example
+
+For example, this binary tree [1,2,2,3,4,4,3] is symmetric:
+
+    1
+   / \
+  2   2
+ / \ / \
+3  4 4  3
+ 
+
+But the following [1,2,2,null,3,null,3] is not:
+
+    1
+   / \
+  2   2
+   \   \
+   3    3
+
+
+### Note/思路/考え方
+
+这道题我最初的思路是将给定的二叉树进行中序遍历然后将结果存在一个整形列表，就能转化为判断该整形列表是否对称。但是在写程序时候发现存在于二叉树里的null没法加在列表里。
+
+接下来考虑递归，对于root节点来说，判断其是否满足题意的第一步是从上向下，判断root.left和root.right的大小是否相等。若相等，则可以拆分成判断left.left == right.right && left.right == right.left.以此类推，一直向下。
+代码见下：
+
+```java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        if(root == null){
+            return true;
+        }
+        
+        return help(root.left, root.right);
+    }
+    
+    private boolean help(TreeNode left, TreeNode right){
+        if(left == null && right == null){
+            return true;
+        }
+        
+        if(left == null || right == null){
+            return false;
+        }
+  
+        
+        if(left.val != right.val){
+            return false;
+        }
+        
+        return (help(left.left, right.right) && help(left.right, right.left));
+    }
+}
+```
