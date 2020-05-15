@@ -15,6 +15,7 @@ Tree, dfs
 ### Note/思路/考え方
 解法一： 这道题就是非常典型的深度优先算法。通过一个helper函数来遍历每一个节点，并在函数里继续调用自己，传入的节点参数变成当前节点的左或右节点。每一次自身调用，说明层数增加了1，返回值也相应的加1就行了。注意，在每次调用helper函数的时候，return的部分里，1都代表自己这一层的当前节点。    
 ```java   
+
 	class Solution {
 	    public int maxDepth(TreeNode root) {
 	        int result = helper(root);

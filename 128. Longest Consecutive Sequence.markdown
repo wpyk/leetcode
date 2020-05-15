@@ -9,45 +9,46 @@ Output: 4
 ### Note/思路/考え方  
 本题的思路如下：将数组第0位的数字n取出来，将n和数组作为参数传入helper函数。helper函数要做的事情有以下几步：首先，将n从数组中删除。其次，寻找是否数组存在n-1这个数，如果存在则继续寻找n-2……从而达到递归，找到包含n的连续数字中的最小值。接下来同理，从n+1开始寻找比n大的连续数字中的最大值。假设我们找到的最小值和最大值分别是min和max，则这一串连续数字的长度是max-min-1。代码参见解法一。
 ```java
-class Solution {
+
+	class Solution {
     
-    int result = 1;
-    public int longestConsecutive(int[] nums) {
-        if(nums.length == 0){
-            return 0;
-        }
-        int result = 1;
-        Set<Integer> set = new HashSet<>();
-        
-        for(int i = 0; i < nums.length; i++){
-            set.add(nums[i]);
-        }
-        
-        for(int i = 0; i < nums.length; i++){
-            if(!set.contains(nums[i])){
-                continue;
-            }
-            
-            set.remove(nums[i]);
-            int pre = nums[i]-1;
-            int next = nums[i]+1;
-            
-            while(set.contains(pre)){
-                set.remove(pre);
-                pre--;
-            }
-            
-            while(set.contains(next)){
-                set.remove(next);
-                next++;
-            }
-            
-            result = Math.max(result, next-pre-1);
-        }
-        
-        return result;
-    }
+	    int result = 1;
+	    public int longestConsecutive(int[] nums) {
+	        if(nums.length == 0){
+	            return 0;
+	        }
+	        int result = 1;
+	        Set<Integer> set = new HashSet<>();
+	        
+	        for(int i = 0; i < nums.length; i++){
+	            set.add(nums[i]);
+	        }
+	        
+	        for(int i = 0; i < nums.length; i++){
+	            if(!set.contains(nums[i])){
+	                continue;
+	            }
+	            
+	            set.remove(nums[i]);
+	            int pre = nums[i]-1;
+	            int next = nums[i]+1;
+	            
+	            while(set.contains(pre)){
+	                set.remove(pre);
+	                pre--;
+	            }
+	            
+	            while(set.contains(next)){
+	                set.remove(next);
+	                next++;
+	            }
+	            
+	            result = Math.max(result, next-pre-1);
+	        }
+	        
+	        return result;
+	    }
     
-}
+	}
 ```
 *这道题要求复杂度是O(n)，以上给出的解决方案，不符合该性能。

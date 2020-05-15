@@ -6,35 +6,35 @@
 Given a binary tree, return the level order / reverse level order/zigzag laevel order traversal of its nodes' values. (ie, from left to right, level by level).
  
 ## Example
-    3
-   / \
-  9  20
-    /  \
-   15   7
-
-
-level order:  
-
-[  
-  [3],  
-  [9,20],  
-  [15,7]  
-]  
-
-reverse order:  
-
-[  
-  [15,7],  
-  [9,20],  
-  [3]  
-]
-
-zigzag order:  
-[  
-  [3],  
-  [20,9],  
-  [15,7]  
-]
+	    3
+	   / \
+	  9  20
+	    /  \
+	   15   7
+	
+	
+	level order:  
+	
+	[  
+	  [3],  
+	  [9,20],  
+	  [15,7]  
+	]  
+	
+	reverse order:  
+	
+	[  
+	  [15,7],  
+	  [9,20],  
+	  [3]  
+	]
+	
+	zigzag order:  
+	[  
+	  [3],  
+	  [20,9],  
+	  [15,7]  
+	]
 
 ### Note/思路/考え方 
 这道题也属于套路型题目，有以下两种思考方式。  
@@ -45,254 +45,256 @@ zigzag order:
 思路二： queue遍历型
 第一步： 首先创建一个queue， 利用其先进先出的特点，能够将给定二叉树有序的存储在其中。创建result列表，用于最终返回值的存储。将root节点加入到queue中。注意，此时queue中存储的root是该节点所在层的所有节点。代码见下：  
 ```java
-//102
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
-class Solution {
-    public List<List<Integer>> levelOrder(TreeNode root) {
-        List<List<Integer>> list = new ArrayList<>();
-        if(root == null){
-            return list;
-        }
-        helper(root, 0, list);
-        return list;
-        
-    }
-    
-    private void helper(TreeNode node, int level,List<List<Integer>> list){
-        
-        if(node == null){
-            return;
-        }
-        
-        if(list.size() < level + 1){
-            list.add(new ArrayList());
-        }
-        
-        list.get(level).add(node.val);
-        helper(node.left, level+1,list);
-        helper(node.right, level+1,list);
-        
-    }
-}
-
-//107
-
-class Solution {
-    public List<List<Integer>> levelOrderBottom(TreeNode root) {
-     
-        List<List<Integer>> result = new ArrayList<>();
-        List<List<Integer>> result2 = new ArrayList<>();
-
-        if(root == null){
-           return result; 
-        }
-        
-        helper(root, 0 , result);
-
-        
-        return result;
-    }
-    
-    private void helper(TreeNode node, Integer level,List<List<Integer>> result ){
-        if(node == null){
-            return ;
-        }
-        
-        if(result.size()<level+1){
-            result.add(0,new ArrayList());
-        }
-        
-        result.get(result.size()-level-1).add(node.val);
-        
-        helper(node.left, level + 1, result);
-        helper(node.right, level + 1, result);
-  
-    }
-}
-
-//103
-
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
-class Solution {
-    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        List<List<Integer>> result = new ArrayList<>();
-        if(root == null){
-            return result;
-        }
-        helper(root, result, 0);
-        return result;
-    }
-    
-    private void helper(TreeNode node, List<List<Integer>> result, int level){
-        if(node == null){
-            return;
-        }
-        
-        if(result.size() < level+1){
-            result.add(new ArrayList());
-        }
-        //数据的加入顺序是通过判断level值来进行的
-        if(level%2 == 0){
-            result.get(level).add(node.val);
-        }else{
-            result.get(level).add(0,node.val);
-        }
-        
-        helper(node.left,result, level+1);
-        helper(node.right,result, level+1);
-        
-    }
-}
+	
+	//102
+	/**
+	 * Definition for a binary tree node.
+	 * public class TreeNode {
+	 *     int val;
+	 *     TreeNode left;
+	 *     TreeNode right;
+	 *     TreeNode(int x) { val = x; }
+	 * }
+	 */
+	class Solution {
+	    public List<List<Integer>> levelOrder(TreeNode root) {
+	        List<List<Integer>> list = new ArrayList<>();
+	        if(root == null){
+	            return list;
+	        }
+	        helper(root, 0, list);
+	        return list;
+	        
+	    }
+	    
+	    private void helper(TreeNode node, int level,List<List<Integer>> list){
+	        
+	        if(node == null){
+	            return;
+	        }
+	        
+	        if(list.size() < level + 1){
+	            list.add(new ArrayList());
+	        }
+	        
+	        list.get(level).add(node.val);
+	        helper(node.left, level+1,list);
+	        helper(node.right, level+1,list);
+	        
+	    }
+	}
+	
+	//107
+	
+	class Solution {
+	    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+	     
+	        List<List<Integer>> result = new ArrayList<>();
+	        List<List<Integer>> result2 = new ArrayList<>();
+	
+	        if(root == null){
+	           return result; 
+	        }
+	        
+	        helper(root, 0 , result);
+	
+	        
+	        return result;
+	    }
+	    
+	    private void helper(TreeNode node, Integer level,List<List<Integer>> result ){
+	        if(node == null){
+	            return ;
+	        }
+	        
+	        if(result.size()<level+1){
+	            result.add(0,new ArrayList());
+	        }
+	        
+	        result.get(result.size()-level-1).add(node.val);
+	        
+	        helper(node.left, level + 1, result);
+	        helper(node.right, level + 1, result);
+	  
+	    }
+	}
+	
+	//103
+	
+	/**
+	 * Definition for a binary tree node.
+	 * public class TreeNode {
+	 *     int val;
+	 *     TreeNode left;
+	 *     TreeNode right;
+	 *     TreeNode(int x) { val = x; }
+	 * }
+	 */
+	class Solution {
+	    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+	        List<List<Integer>> result = new ArrayList<>();
+	        if(root == null){
+	            return result;
+	        }
+	        helper(root, result, 0);
+	        return result;
+	    }
+	    
+	    private void helper(TreeNode node, List<List<Integer>> result, int level){
+	        if(node == null){
+	            return;
+	        }
+	        
+	        if(result.size() < level+1){
+	            result.add(new ArrayList());
+	        }
+	        //数据的加入顺序是通过判断level值来进行的
+	        if(level%2 == 0){
+	            result.get(level).add(node.val);
+	        }else{
+	            result.get(level).add(0,node.val);
+	        }
+	        
+	        helper(node.left,result, level+1);
+	        helper(node.right,result, level+1);
+	        
+	    }
+	}
 
 ```
 第二步： while（！queue.isEmpty()）循环遍历queue。对于每一次的while循环而言，这个queue存储的是只属于某一层的所有的节点。将每一个元素通过poll()取出来，如果其存在左右节点，则分别加入queue中。同时将取出来的节点加入到一个temp的list中。这个过程通过一个for循环控制，for循环的次数是最初queue的size，这样就能将改层所有节点的左右节点按顺序取出放进queue中，并且由于控制循环次数的size是在for循环外确定的，即使queue越来越长，其循环次数并不会增加。当for循环结束时，temp已经存储了while循环开始时queue里存储的全部的节点的值，在进行下一次的while循环之前，把这个结果加到result中在新的while循环中，此时的queue中包含的是接下里要处理的下一层的所有的元素。代码见下：  
 ```java
 //102
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
-class Solution {
-    public List<List<Integer>> levelOrder(TreeNode root) {
-        List<List<Integer>> result = new ArrayList<>();
-        if(root == null){
-            return result;
-        }
-        
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
-        
-        while(!queue.isEmpty()){
-            List<Integer> temp = new ArrayList<>();
-            //注意，size必须在for循环外！
-            int size = queue.size();
-            //for循环的判断条件不能用i < queue.size()，因为queue在for循环中一直在变。
-            for(int i = 0; i < size; i++ ){
-                TreeNode node = queue.poll();
-                
-                if(node.left != null){
-                    queue.add(node.left);
-                }
-                if(node.right != null){
-                    queue.add(node.right);
-                }
-                
-                temp.add(node.val);
-            }
-            result.add(temp);
-        }
-        return result;
-    }
-}
-
-//107
-
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
-class Solution {
-    public List<List<Integer>> levelOrderBottom(TreeNode root) {
-        Queue<TreeNode> queue = new LinkedList<>();
-        List<List<Integer>> result = new ArrayList<>();
-        if(root == null){
-            return result;
-        }
-        
-        queue.offer(root);
-        
-        while(! queue.isEmpty()){
-            List<Integer> temp = new ArrayList<>();
-            int size = queue.size();
-            System.out.println(size);
-            for(int i = 0; i < size; i++){
-                TreeNode node = queue.poll();
-                if(node.left != null){
-                    queue.offer(node.left);
-                }
-                if(node.right != null){
-                    queue.offer(node.right);
-                }
-                temp.add(node.val);
-            }
-            
-            result.add(0,temp);
-        }
-        
-        return result;
-    }
-}
-
-//103
-
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
-class Solution {
-    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        List<List<Integer>> result = new ArrayList<>();
-        if(root == null){
-            return result;
-        }
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
-        int level = 0;
-        while(!queue.isEmpty()){
-            int size = queue.size();
-            List<Integer> temp = new ArrayList<>();
-            for(int i = 0; i<size;i++){
-                TreeNode node = queue.poll();
-                if(node.left!=null){
-                    queue.add(node.left);
-                }
-                if(node.right!=null){
-                    queue.add(node.right);
-                }
-                if(level%2 == 0){
-                    temp.add(node.val);
-                }else{
-                    temp.add(0,node.val);
-
-                }
-                // System.out.print(node.val);
-            }
-            result.add(temp);
-            level ++;
-
-        }
-        return result;
-    }
-}
+	
+	/**
+	 * Definition for a binary tree node.
+	 * public class TreeNode {
+	 *     int val;
+	 *     TreeNode left;
+	 *     TreeNode right;
+	 *     TreeNode(int x) { val = x; }
+	 * }
+	 */
+	class Solution {
+	    public List<List<Integer>> levelOrder(TreeNode root) {
+	        List<List<Integer>> result = new ArrayList<>();
+	        if(root == null){
+	            return result;
+	        }
+	        
+	        Queue<TreeNode> queue = new LinkedList<>();
+	        queue.offer(root);
+	        
+	        while(!queue.isEmpty()){
+	            List<Integer> temp = new ArrayList<>();
+	            //注意，size必须在for循环外！
+	            int size = queue.size();
+	            //for循环的判断条件不能用i < queue.size()，因为queue在for循环中一直在变。
+	            for(int i = 0; i < size; i++ ){
+	                TreeNode node = queue.poll();
+	                
+	                if(node.left != null){
+	                    queue.add(node.left);
+	                }
+	                if(node.right != null){
+	                    queue.add(node.right);
+	                }
+	                
+	                temp.add(node.val);
+	            }
+	            result.add(temp);
+	        }
+	        return result;
+	    }
+	}
+	
+	//107
+	
+	/**
+	 * Definition for a binary tree node.
+	 * public class TreeNode {
+	 *     int val;
+	 *     TreeNode left;
+	 *     TreeNode right;
+	 *     TreeNode(int x) { val = x; }
+	 * }
+	 */
+	class Solution {
+	    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+	        Queue<TreeNode> queue = new LinkedList<>();
+	        List<List<Integer>> result = new ArrayList<>();
+	        if(root == null){
+	            return result;
+	        }
+	        
+	        queue.offer(root);
+	        
+	        while(! queue.isEmpty()){
+	            List<Integer> temp = new ArrayList<>();
+	            int size = queue.size();
+	            System.out.println(size);
+	            for(int i = 0; i < size; i++){
+	                TreeNode node = queue.poll();
+	                if(node.left != null){
+	                    queue.offer(node.left);
+	                }
+	                if(node.right != null){
+	                    queue.offer(node.right);
+	                }
+	                temp.add(node.val);
+	            }
+	            
+	            result.add(0,temp);
+	        }
+	        
+	        return result;
+	    }
+	}
+	
+	//103
+	
+	/**
+	 * Definition for a binary tree node.
+	 * public class TreeNode {
+	 *     int val;
+	 *     TreeNode left;
+	 *     TreeNode right;
+	 *     TreeNode(int x) { val = x; }
+	 * }
+	 */
+	class Solution {
+	    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+	        List<List<Integer>> result = new ArrayList<>();
+	        if(root == null){
+	            return result;
+	        }
+	        Queue<TreeNode> queue = new LinkedList<>();
+	        queue.offer(root);
+	        int level = 0;
+	        while(!queue.isEmpty()){
+	            int size = queue.size();
+	            List<Integer> temp = new ArrayList<>();
+	            for(int i = 0; i<size;i++){
+	                TreeNode node = queue.poll();
+	                if(node.left!=null){
+	                    queue.add(node.left);
+	                }
+	                if(node.right!=null){
+	                    queue.add(node.right);
+	                }
+	                if(level%2 == 0){
+	                    temp.add(node.val);
+	                }else{
+	                    temp.add(0,node.val);
+	
+	                }
+	                // System.out.print(node.val);
+	            }
+	            result.add(temp);
+	            level ++;
+	
+	        }
+	        return result;
+	    }
+	}
 ```

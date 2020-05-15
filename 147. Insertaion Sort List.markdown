@@ -17,55 +17,57 @@ Output: -1->0->3->4->5
 ### Code/代码/コード    
 ### 正序
 ```java
-class Solution {
-    public ListNode insertionSortList(ListNode head) {
-        if(head == null||head.next == null)  
-             return head; 
-        ListNode sortedListHead = new ListNode(0);
-        ListNode cur = head;
-        
-        while(cur != null){
-            ListNode next = cur.next;
-            ListNode pre = sortedListHead;
-
-            //精华行，正序倒序只取决于">" 还是"<"
-            while(pre.next != null && pre.next.val < cur.val){
-                pre = pre.next;
-            }
-            
-            cur.next = pre.next;
-            pre.next = cur;
-            cur = next;
-        }
-        
-        return sortedListHead.next;
-    }
-}
-```
+	
+	class Solution {
+	    public ListNode insertionSortList(ListNode head) {
+	        if(head == null||head.next == null)  
+	             return head; 
+	        ListNode sortedListHead = new ListNode(0);
+	        ListNode cur = head;
+	        
+	        while(cur != null){
+	            ListNode next = cur.next;
+	            ListNode pre = sortedListHead;
+	
+	            //精华行，正序倒序只取决于">" 还是"<"
+	            while(pre.next != null && pre.next.val < cur.val){
+	                pre = pre.next;
+	            }
+	            
+	            cur.next = pre.next;
+	            pre.next = cur;
+	            cur = next;
+	        }
+	        
+	        return sortedListHead.next;
+	    }
+	}
+	```
 ### 倒序  
-```java
-class Solution {
-    public ListNode insertionSortList(ListNode head) {
-        if(head == null||head.next == null)  
-             return head; 
-        ListNode sortedListHead = new ListNode(0);
-        ListNode cur = head;
-        
-        while(cur != null){
-            ListNode next = cur.next;
-            ListNode pre = sortedListHead;
-            
-            //精华行，正序倒序只取决于">" 还是"<"
-            while(pre.next != null && pre.next.val > cur.val){
-                pre = pre.next;
-            }
-            
-            cur.next = pre.next;
-            pre.next = cur;
-            cur = next;
-        }
-        
-        return sortedListHead.next;
-    }
-}
+	```java
+
+	class Solution {
+	    public ListNode insertionSortList(ListNode head) {
+	        if(head == null||head.next == null)  
+	             return head; 
+	        ListNode sortedListHead = new ListNode(0);
+	        ListNode cur = head;
+	        
+	        while(cur != null){
+	            ListNode next = cur.next;
+	            ListNode pre = sortedListHead;
+	            
+	            //精华行，正序倒序只取决于">" 还是"<"
+	            while(pre.next != null && pre.next.val > cur.val){
+	                pre = pre.next;
+	            }
+	            
+	            cur.next = pre.next;
+	            pre.next = cur;
+	            cur = next;
+	        }
+	        
+	        return sortedListHead.next;
+	    }
+	}
 ```

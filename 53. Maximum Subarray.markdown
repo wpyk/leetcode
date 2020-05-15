@@ -15,20 +15,20 @@ Explanation: [4,-1,2,1] has the largest sum = 6.
 这道题的思路比较直接，首先创建两个变量，分别用于存储临时的和sum，以及最后要返回的结果result。使用for循环遍历给定的数组，在每一步进行如下判断：在当前位置之前的和是否大于零，是的话就将当前位的值nums[i]加上临时的和sum，同时更新result。最终将result返回，代码如下：
 
 ```java
-
-class Solution {
-    public int maxSubArray(int[] nums) {
-        int sum = Integer.MIN_VALUE;
-        int result = sum;
-        
-        for(int i = 0; i < nums.length; i++){
-
-            //核心代码其实就是这一行
-            sum = nums[i] + (sum > 0? sum :0);
-            result = result > sum ? result: sum; 
-        }
-
-        return result;
-    }
-}
+	
+	class Solution {
+	    public int maxSubArray(int[] nums) {
+	        int sum = Integer.MIN_VALUE;
+	        int result = sum;
+	        
+	        for(int i = 0; i < nums.length; i++){
+	
+	            //核心代码其实就是这一行
+	            sum = nums[i] + (sum > 0? sum :0);
+	            result = result > sum ? result: sum; 
+	        }
+	
+	        return result;
+	    }
+	}
 ```

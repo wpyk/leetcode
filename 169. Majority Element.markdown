@@ -17,6 +17,7 @@ counting
 ### Note/思路/考え方
 这道题可以用一个非常简单的“举手投票”法进行求解。思路非常清晰，先从给定的数组中拿出一个数，记录该数为num，然后记录其票数为count = 1. 遍历数组，遇到与其相同的书，就增加其票数(count ++)，与其不同的话，就减少票数。当票数归零的时候，更新num为当前的index的位置的数字，开始继续之前的循环。这样做一定能够找出数组的众数，因为它能够得到的票数是>n/2的。
 ```java
+
     class Solution {
 	    public int majorityElement(int[] nums) {
 	        int num = 0;

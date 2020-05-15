@@ -3,68 +3,69 @@
 Given a 2D board containing 'X' and 'O' (the letter O), capture all regions surrounded by 'X'.  
 A region is captured by flipping all 'O's into 'X's in that surrounded region.  
 ## Example
-X X X X
-X O O X
-X X O X
-X O X X  
-After running your function, the board should be:  
-X X X X
-X X X X
-X X X X
-X O X X  
+	X X X X
+	X O O X
+	X X O X
+	X O X X  
+	After running your function, the board should be:  
+	X X X X
+	X X X X
+	X X X X
+	X O X X  
 ### Note/思路/考え方    
 根据题目的要求，可以非常简单的做出判断，只有和四个边缘相通的‘O’才能保留下来。思路是这样的，先把这个棋盘的四周遍历一圈，找到所有的‘O’并将其变为‘$’。然后寻找这个‘O’左右上下是否还有‘O’，有的话将其也变为‘$’。对每一个被变为‘$’ 的重复以上过程。 此时，原本的棋盘中能够与四周相连的‘O’已经全部被‘$’代替。第二次遍历棋盘，将其中残留的‘O’变为‘X’，因为此时存留的一定是被完全包围的。最后再遍历一次棋盘，将‘$’改为‘O’，结束。
 
 参见代码如下：  
 ```java
-class Solution {
-    public void solve(char[][] board) {
-
-        //第一次for循环，找四周的‘O’
-        for(int i = 0; i < board.length; i++){
-            for(int j = 0; j < board[0].length; j++){
-                if((i == 0 || i == board.length-1 || j == 0 || j == board[0].length-1)&& board[i][j] == 'O'){
-                    helper(i,j,board);
-                }
-            }
-        }
-        //第二次for循环，将无法与外部相连的‘O’变为‘X’
-        for(int i = 0; i < board.length; i++){
-            for(int j = 0; j < board[0].length; j++){
-                if(board[i][j] == 'O'){
-                    board[i][j]='X';
-                }
-            }
-        }
-        //第三次for循环，将之前保存的‘$’变为‘O’
-        for(int i = 0; i < board.length; i++){
-            for(int j = 0; j < board[0].length; j++){
-                if(board[i][j] == '$'){
-                    board[i][j]='O';
-                }
-            }
-        }
-        
-        
-    }
-    //private函数将每一个从‘O’变成‘$’的位置四周的元素进行检查和改变
-    private void helper(int i, int j, char[][] board){
-        board [i][j]='$';
-        
-        if(i < board.length-1 && board[i+1][j] == 'O'){
-            helper(i+1, j, board);
-        }
-        if(i > 0 && board[i-1][j] == 'O'){
-            helper(i-1, j, board);
-        }
-        if(j < board[0].length-1 && board[i][j+1] == 'O'){
-            helper(i, j+1, board);
-        }
-        if(j > 0 && board[i][j-1] == 'O'){
-            helper(i, j-1, board);
-        }
-        
-        
-    }
-}
+	
+	class Solution {
+	    public void solve(char[][] board) {
+	
+	        //第一次for循环，找四周的‘O’
+	        for(int i = 0; i < board.length; i++){
+	            for(int j = 0; j < board[0].length; j++){
+	                if((i == 0 || i == board.length-1 || j == 0 || j == board[0].length-1)&& board[i][j] == 'O'){
+	                    helper(i,j,board);
+	                }
+	            }
+	        }
+	        //第二次for循环，将无法与外部相连的‘O’变为‘X’
+	        for(int i = 0; i < board.length; i++){
+	            for(int j = 0; j < board[0].length; j++){
+	                if(board[i][j] == 'O'){
+	                    board[i][j]='X';
+	                }
+	            }
+	        }
+	        //第三次for循环，将之前保存的‘$’变为‘O’
+	        for(int i = 0; i < board.length; i++){
+	            for(int j = 0; j < board[0].length; j++){
+	                if(board[i][j] == '$'){
+	                    board[i][j]='O';
+	                }
+	            }
+	        }
+	        
+	        
+	    }
+	    //private函数将每一个从‘O’变成‘$’的位置四周的元素进行检查和改变
+	    private void helper(int i, int j, char[][] board){
+	        board [i][j]='$';
+	        
+	        if(i < board.length-1 && board[i+1][j] == 'O'){
+	            helper(i+1, j, board);
+	        }
+	        if(i > 0 && board[i-1][j] == 'O'){
+	            helper(i-1, j, board);
+	        }
+	        if(j < board[0].length-1 && board[i][j+1] == 'O'){
+	            helper(i, j+1, board);
+	        }
+	        if(j > 0 && board[i][j-1] == 'O'){
+	            helper(i, j-1, board);
+	        }
+	        
+	        
+	    }
+	}
 ```

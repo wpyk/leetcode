@@ -10,26 +10,27 @@ Output: 5->4->3->2->1->NULL
 ### Code/代码/コード    
 
 ```java
-class Solution {
-    public ListNode reverseList(ListNode head) {
-        ListNode pre = null;
-        ListNode temp = null;
-        
-        if(head == null || head.next == null){
-           return head; 
-        }
-        
-        while(head != null){
-            temp = head.next;
-            head.next = pre;
-            pre = head;
-            head = temp;
-        }
-        
-        return pre;
-
-        
-        
-    }
-}
+	
+	class Solution {
+	    public ListNode reverseList(ListNode head) {
+	        ListNode pre = null;
+	        ListNode temp = null;
+	        
+	        if(head == null || head.next == null){
+	           return head; 
+	        }
+	        
+	        while(head != null){
+	            temp = head.next;
+	            head.next = pre;
+	            pre = head;
+	            head = temp;
+	        }
+	        
+	        return pre;
+	
+	        
+	        
+	    }
+	}
 ```

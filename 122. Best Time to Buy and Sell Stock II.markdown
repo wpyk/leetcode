@@ -27,6 +27,7 @@ Explanation: Buy on day 1 (price = 1) and sell on day 5 (price = 5), profit = 5-
 2. 第一天买入，第三天卖出。  
 本质上二者是一样的，但是从实际编程角度来讲，第一种操作方案的可执行性要高很多。只要明天比今天价格高，那就今天买明天卖。本题的思路也是如此，从数组的起始位置开始遍历，只要下一位比当前位高，就将二者的差值计算入total中。代码如下：  
 ```java
+
     class Solution {
 	    public int maxProfit(int[] prices) {
 	        int total = 0;

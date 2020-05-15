@@ -25,6 +25,7 @@ Tree， convert a tree
 这道题要求构建的是BST，即对于任何一个节点来说，其左子树上的点都比自身小，同时小于其右子树。这说明，当给定一个递增的数组的时候，其中位数就是这个数组中明确的中间节点。当中间节点确定后，我们将该节点左侧的数用于构建左子树，右侧的数用来构建右子树。这个过程对于任何一个节点都是一样的，因此可以通过dfs方法解决。
 代码如下：
 ```java
+
     class Solution {
 	    public TreeNode sortedArrayToBST(int[] nums) {
 	        return helper(nums, 0, nums.length-1);
